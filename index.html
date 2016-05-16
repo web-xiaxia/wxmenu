@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信菜单配置</title>
+    <style type="text/css">
+        body {
+            font-size: 14px;
+            line-height: 1.6;
+            font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", "\9ED1\4F53", Arial, sans-serif;
+        }
+
+        ul, ol {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        a {
+            color: #459ae9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .tip {
+            color: #8d8d8d;
+        }
+
+        #menu {
+            width: 860px;
+            position: relative;
+        }
+
+        #phone {
+            width: 320px;
+            border: 1px solid #dff3ff;
+            background: #f0eff8;
+            float: left;
+            margin-right: 16px;
+        }
+
+        #phone-title {
+            height: 64px;
+            background: url("img/bg_mobile_head_default2968da.png");
+        }
+
+        #phone-title-text {
+            text-align: center;
+            padding-top: 24px;
+            line-height: 40px;
+            color: white;
+        }
+
+        #phone-content {
+            height: 466px;
+        }
+
+        #phone-button {
+            height: 50px;
+            background: url("img/bg_mobile_foot_default2968da.png");
+        }
+
+        #phone-button-text {
+            padding-left: 46px;
+            line-height: 50px;
+            position: relative;
+        }
+
+        #phone-button-text > ul {
+            width: 100%;
+            position: absolute;
+        }
+
+        #phone-button-text > ul > li {
+            min-width: 91px;
+            max-width: 137px;
+            display: inline-block;
+            text-align: center;
+            border-right: 1px solid #bcbbc4;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #phone-button-text > ul > li > ul {
+            width: 100%;
+            position: absolute;
+            bottom: 50px;
+            border-bottom: 1px solid #bcbbc4;
+            border-left: 1px solid #bcbbc4;
+            background: white;
+            left: -1px;
+        }
+
+        #phone-button-text > ul > li > ul > li {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            border-top: 1px solid #bcbbc4;
+            border-right: 1px solid #bcbbc4;
+
+        }
+
+        #menu-edit {
+            height: 575px;
+            width: 530px;
+            border: 1px solid silver;
+            background: #F4F5F9;
+            display: table-cell;
+            float: none;
+            padding: 0 20px 5px;
+
+        }
+
+        #menu-edit-title {
+            padding: 9px;
+            border-bottom: 1px solid silver;
+        }
+
+        #menu-edit-title-name {
+            font-weight: bold;
+            float: left;
+        }
+
+        #menu-edit-del {
+            width: 100%;
+            text-align: right;
+        }
+
+        #menu-type li {
+            float: left;
+            padding: 5px;
+            min-width: 50px;
+            text-align: center;
+
+        }
+
+    </style>
+    <script type="application/javascript" src="js/jquery-1.12.3.min.js"></script>
+
+</head>
+<body>
+<div>
+    <div>appID：<input type="text" id="appId" value="wx674e6fc604b987e6"></div>
+    <div>appsecret：<input type="text" id="appsecret" value="e2b4eec5075464a31602ac035d686076"></div>
+    <div><a href="javascript:void(0)" id="getAccessToken">获取accessToken</a></div>
+</div>
+<div>
+    <input type="text" id="accessToken" value=""><a href="javascript:void(0)" id="querymeun">查询菜单</a>
+</div>
+<div id="menu">
+    <div id="phone">
+        <div id="phone-title">
+            <div id="phone-title-text">微信公众号</div>
+        </div>
+        <div id="phone-content">
+
+        </div>
+        <div id="phone-button">
+            <div id="phone-button-text">
+                <ul id="phone-button-text-ul">
+                    <li>
+                        <div id="m1" class="m"></div>
+                        <ul>
+                            <li id="m11" class="m"></li>
+                            <li id="m12" class="m"></li>
+                            <li id="m13" class="m"></li>
+                            <li id="m14" class="m"></li>
+                            <li id="m15" class="m"></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div id="m2" class="m"></div>
+                        <ul>
+                            <li id="m21" class="m"></li>
+                            <li id="m22" class="m"></li>
+                            <li id="m23" class="m"></li>
+                            <li id="m24" class="m"></li>
+                            <li id="m25" class="m"></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div id="m3" class="m"></div>
+                        <ul>
+                            <li id="m31" class="m"></li>
+                            <li id="m32" class="m"></li>
+                            <li id="m33" class="m"></li>
+                            <li id="m34" class="m"></li>
+                            <li id="m35" class="m"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="menu-edit">
+        <div id="menu-edit-title">
+            <div id="menu-edit-title-name">编辑菜单</div>
+            <div id="menu-edit-del"><a href="javascript:void(0)" id="menu-edit-del-a">删除菜单</a></div>
+        </div>
+        <div>
+            菜单名称：<input type="text" id="menu-name">
+            <p class="tip">字数不超过4个汉字或8个字母</p>
+        </div>
+        <div id="menu-type-vive">
+            <!--            1、click：点击推事件用户点击click类型按钮后，微信服务器会通过消息接口推送消息类型为event的结构给开发者（参考消息接口指南），并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与用户进行交互；
+                        2、view：跳转URL用户点击view类型按钮后，微信客户端将会打开开发者在按钮中填写的网页URL，可与网页授权获取用户基本信息接口结合，获得用户基本信息。
+                        3、scancode_push：扫码推事件用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后显示扫描结果（如果是URL，将进入URL），且会将扫码的结果传给开发者，开发者可以下发消息。
+                        4、scancode_waitmsg：扫码推事件且弹出“消息接收中”提示框用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后，将扫码的结果传给开发者，同时收起扫一扫工具，然后弹出“消息接收中”提示框，随后可能会收到开发者下发的消息。
+                        5、pic_sysphoto：弹出系统拍照发图用户点击按钮后，微信客户端将调起系统相机，完成拍照操作后，会将拍摄的相片发送给开发者，并推送事件给开发者，同时收起系统相机，随后可能会收到开发者下发的消息。
+                        6、pic_photo_or_album：弹出拍照或者相册发图用户点击按钮后，微信客户端将弹出选择器供用户选择“拍照”或者“从手机相册选择”。用户选择后即走其他两种流程。
+                        7、pic_weixin：弹出微信相册发图器用户点击按钮后，微信客户端将调起微信相册，完成选择操作后，将选择的相片发送给开发者的服务器，并推送事件给开发者，同时收起相册，随后可能会收到开发者下发的消息。
+                        8、location_select：弹出地理位置选择器用户点击按钮后，微信客户端将调起地理位置选择工具，完成选择操作后，将选择的地理位置发送给开发者的服务器，同时收起位置选择工具，随后可能会收到开发者下发的消息。
+                        9、media_id：下发消息（除文本消息）用户点击media_id类型按钮后，微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
+                        10、view_limited：跳转图文消息URL用户点击view_limited类型按钮后，微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL，永久素材类型只支持图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。-->
+            菜单类型：
+            <ul id="menu-type">
+                <!-- <li><input type="radio" id="click" name="type"> <label for="click">发送消息</label> </li>-->
+                <li><input type="radio" id="view" name="type" value="view"> <label for="view">跳转网页</label></li>
+            </ul>
+        </div>
+        <div id="menu-type-content">
+            <div id="view-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="application/javascript">
+
+
+    function baseSuccess(data) {
+        console.log(data);
+        if (data.errcode != null && data.errcode != 0) {
+            alert("错误码：" + data.errcode + "\n" + "错误内容：" + data.errmsg)
+            return false;
+        }
+        return true;
+    }
+
+    function myAjax(data, success) {
+        $.ajax({
+            url: "http://999.xutil.sinaapp.com/http.php",
+            type: "get",
+            dataType: "jsonp",
+            data: data,
+            success: function (data) {
+                if (baseSuccess(data)) {
+                    success(data);
+                }
+            }
+        })
+
+    }
+
+    $("#getAccessToken").click(function () {
+        var data = {
+            url: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + $("#appId").val() + "&secret=" + $("#appsecret").val(),
+            type: "get",
+        }
+        myAjax(data, function (data) {
+            window.localStorage.accessToken = data.access_token;
+            $("#accessToken").val(data.access_token);
+        });
+    })
+
+
+    $("#querymeun").click(function () {
+        window.localStorage.accessToken = $("#accessToken").val();
+        var data = {
+            url: "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=" + window.localStorage.accessToken,
+            type: "get",
+        }
+        myAjax(data, function (data) {
+            var ul = $("#phone-button-text-ul");
+            //ul.empty();
+            var buttons = data.menu.button;
+            var i = 0;
+            if (buttons != null && buttons.length > 0) {
+                for (; i < buttons.length; i++) {
+                    var button = buttons[i];
+                    var m = $("#m" + (i + 1));
+                    m.text(button.name);
+                    m.data("data",button);
+
+                    var subButtons = button.sub_button;
+                    var j = 0;
+                    if (subButtons != null && subButtons.length > 0) {
+                        for (; j < subButtons.length; j++) {
+                            var subButton=subButtons[j];
+                            var mj=$("#m" + (i + 1)+(j+1));
+                            mj.text(subButton.name);
+                            mj.data("data",subButton);
+                        }
+                    }
+                }
+            }
+        });
+    })
+
+
+    //初始化
+    $("#accessToken").val(window.localStorage.accessToken);
+    if ($("#accessToken").val().length > 0) {
+        $("#querymeun").click();
+    }
+
+
+    $("#phone-button-text-ul>li").delegate(">div", "click", function () {
+        alert(1)
+        var div = $(this);
+        var p = div.attr("p")
+        if (p) {
+            div.parent().parent().find(">li>ul").css({display: "none"});
+        }
+
+        var data = div.data("data")
+        console.log(data);
+        if (data != null) {
+            li.find(">ul").css({display: "block"});
+        } else {
+            li.text("菜单名称");
+            data = {
+                "type": "view",
+                "name": "菜单名称",
+                "url": ""
+            };
+            li.data("data", data);
+            if (!p) {
+                var p = li.parent().parent();
+                p.attr("c", true);
+                p.data("data", {"name": p.data("data").name})
+            }
+        }
+
+
+        var menuEditData = $("#menu-edit").data("data");
+        if (menuEditData != null) {
+            var odata = {};
+            odata.name = $("#menu-name").val();
+            odata.type = $("input[name='type']:checked").val();
+            switch (odata.type) {
+                case "view":
+                    /*odata.url=*/
+                    "";
+                    break;
+            }
+            menuEditData.data("data", odata);
+
+
+        }
+        $("#menu-edit").data("data", li);
+
+        $("#menu-name").val(data.name);
+        $("input[name='type']#" + data.type).prop("checked");
+
+        /* menu-type-vive
+         menu-type-content*/
+
+    });
+
+</script>
+</html>
