@@ -128,7 +128,11 @@
             text-align: right;
         }
 
-        #menu-type li {
+        .menu-type {
+            overflow: hidden;
+        }
+
+        .menu-type li {
             float: left;
             padding: 5px;
             min-width: 50px;
@@ -195,43 +199,65 @@
         </div>
     </div>
     <div id="menu-edit">
-        <div id="menu-edit-title">
-            <div id="menu-edit-title-name">编辑菜单</div>
-            <div id="menu-edit-del"><a href="javascript:void(0)" id="menu-edit-del-a">删除菜单</a></div>
+        <div id="menu-edit-tip" style="padding-top: 50px;">
+            点击左侧编辑
         </div>
-        <div>
-            菜单名称：<input type="text" id="menu-name">
-            <p class="tip">字数不超过4个汉字或8个字母</p>
-        </div>
-        <div id="menu-type-vive">
-            <!--            1、click：点击推事件用户点击click类型按钮后，微信服务器会通过消息接口推送消息类型为event的结构给开发者（参考消息接口指南），并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与用户进行交互；
-                        2、view：跳转URL用户点击view类型按钮后，微信客户端将会打开开发者在按钮中填写的网页URL，可与网页授权获取用户基本信息接口结合，获得用户基本信息。
-                        3、scancode_push：扫码推事件用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后显示扫描结果（如果是URL，将进入URL），且会将扫码的结果传给开发者，开发者可以下发消息。
-                        4、scancode_waitmsg：扫码推事件且弹出“消息接收中”提示框用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后，将扫码的结果传给开发者，同时收起扫一扫工具，然后弹出“消息接收中”提示框，随后可能会收到开发者下发的消息。
-                        5、pic_sysphoto：弹出系统拍照发图用户点击按钮后，微信客户端将调起系统相机，完成拍照操作后，会将拍摄的相片发送给开发者，并推送事件给开发者，同时收起系统相机，随后可能会收到开发者下发的消息。
-                        6、pic_photo_or_album：弹出拍照或者相册发图用户点击按钮后，微信客户端将弹出选择器供用户选择“拍照”或者“从手机相册选择”。用户选择后即走其他两种流程。
-                        7、pic_weixin：弹出微信相册发图器用户点击按钮后，微信客户端将调起微信相册，完成选择操作后，将选择的相片发送给开发者的服务器，并推送事件给开发者，同时收起相册，随后可能会收到开发者下发的消息。
-                        8、location_select：弹出地理位置选择器用户点击按钮后，微信客户端将调起地理位置选择工具，完成选择操作后，将选择的地理位置发送给开发者的服务器，同时收起位置选择工具，随后可能会收到开发者下发的消息。
-                        9、media_id：下发消息（除文本消息）用户点击media_id类型按钮后，微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
-                        10、view_limited：跳转图文消息URL用户点击view_limited类型按钮后，微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL，永久素材类型只支持图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。-->
-            菜单类型：
-            <ul id="menu-type">
-                <li><input type="radio" id="click" name="type" value="click"> <label for="click">发送消息</label> </li>
-                <li><input type="radio" id="view" name="type" value="view"> <label for="view">跳转网页</label></li>
-                <li><input type="radio" id="scancode_push" name="type" value="scancode_push"> <label for="view">扫码推事件</label></li>
-                <li><input type="radio" id="scancode_waitmsg" name="type" value="scancode_waitmsg"> <label for="view">扫码推事件且弹出“消息接收中”提示框</label></li>
-                <li><input type="radio" id="pic_sysphoto" name="type" value="pic_sysphoto"> <label for="view">拍照发图</label></li>
-                <li><input type="radio" id="pic_photo_or_album" name="type" value="pic_photo_or_album"> <label for="view">发图</label></li>
-                <li><input type="radio" id="location_select" name="type" value="location_select"> <label for="view">地理位置</label></li>
-                <li><input type="radio" id="media_id" name="type" value="media_id"> <label for="view">图文消息</label></li>
-                <li><input type="radio" id="view_limited" name="type" value="view_limited"> <label for="view">跳转图文</label></li>
-            </ul>
-        </div>
-        <div id="menu-type-content">
-            <div id="view-content">
+        <div id="menu-edit-content" style="display: none">
+            <div id="menu-edit-title">
+                <div id="menu-edit-title-name">编辑菜单</div>
+                <div id="menu-edit-del"><a href="javascript:void(0)" id="menu-edit-del-a">删除菜单</a></div>
+            </div>
+            <div>
+                菜单名称：<input type="text" id="menu-name">
+                <p class="tip">字数不超过4个汉字或8个字母</p>
+            </div>
+            <div id="menu-type-vive">
+                <!--            1、click：点击推事件用户点击click类型按钮后，微信服务器会通过消息接口推送消息类型为event的结构给开发者（参考消息接口指南），并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与用户进行交互；
+                            2、view：跳转URL用户点击view类型按钮后，微信客户端将会打开开发者在按钮中填写的网页URL，可与网页授权获取用户基本信息接口结合，获得用户基本信息。
+                            3、scancode_push：扫码推事件用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后显示扫描结果（如果是URL，将进入URL），且会将扫码的结果传给开发者，开发者可以下发消息。
+                            4、scancode_waitmsg：扫码推事件且弹出“消息接收中”提示框用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后，将扫码的结果传给开发者，同时收起扫一扫工具，然后弹出“消息接收中”提示框，随后可能会收到开发者下发的消息。
+                            5、pic_sysphoto：弹出系统拍照发图用户点击按钮后，微信客户端将调起系统相机，完成拍照操作后，会将拍摄的相片发送给开发者，并推送事件给开发者，同时收起系统相机，随后可能会收到开发者下发的消息。
+                            6、pic_photo_or_album：弹出拍照或者相册发图用户点击按钮后，微信客户端将弹出选择器供用户选择“拍照”或者“从手机相册选择”。用户选择后即走其他两种流程。
+                            7、pic_weixin：弹出微信相册发图器用户点击按钮后，微信客户端将调起微信相册，完成选择操作后，将选择的相片发送给开发者的服务器，并推送事件给开发者，同时收起相册，随后可能会收到开发者下发的消息。
+                            8、location_select：弹出地理位置选择器用户点击按钮后，微信客户端将调起地理位置选择工具，完成选择操作后，将选择的地理位置发送给开发者的服务器，同时收起位置选择工具，随后可能会收到开发者下发的消息。
+                            9、media_id：下发消息（除文本消息）用户点击media_id类型按钮后，微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
+                            10、view_limited：跳转图文消息URL用户点击view_limited类型按钮后，微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL，永久素材类型只支持图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。-->
+                菜单类型：
+                <ul class="menu-type">
+                    <li><input type="radio" id="click" name="type" value="click"> <label for="click">发送消息</label></li>
+                    <li><input type="radio" id="view" name="type" value="view"> <label for="view">跳转网页</label></li>
+                    <li><input type="radio" id="scancode_push" name="type" value="scancode_push"> <label
+                            for="scancode_push">扫码推事件</label>
+                    </li>
+                    <li><input type="radio" id="scancode_waitmsg" name="type" value="scancode_waitmsg"> <label
+                            for="scancode_waitmsg">扫码推事件且弹出“消息接收中”提示框</label></li>
+                    <li><input type="radio" id="pic_sysphoto" name="type" value="pic_sysphoto"> <label
+                            for="pic_sysphoto">拍照发图</label></li>
+                    <li><input type="radio" id="pic_photo_or_album" name="type" value="pic_photo_or_album"> <label
+                            for="pic_photo_or_album">发图</label></li>
 
+                    <li><input type="radio" id="location_select" name="type" value="location_select"> <label
+                            for="location_select">地理位置</label>
+                    </li>
+                    <li><input type="radio" id="media_id" name="type" value="media_id"> <label
+                            for="media_id">图文消息</label>
+                    </li>
+                    <li><input type="radio" id="view_limited" name="type" value="view_limited"> <label
+                            for="view_limited">跳转图文</label></li>
+                </ul>
+            </div>
+            <div id="menu-type-content" style="padding-top: 20px">
+                <div id="view-content" style="display: none">
+                    跳转地址：<br/><input type="text" id="url">
+                </div>
+                <div id="key-content" style="display: none">
+                    事件key:<br/><input type="text" id="key">
+                </div>
             </div>
         </div>
+    </div>
+    <div style="clear: both">
+        <a href="javascript:void(0)" id="menu-save">保存菜单</a>
     </div>
 </div>
 </body>
@@ -288,40 +314,40 @@
             if (buttons != null && buttons.length > 0) {
                 for (; i < buttons.length; i++) {
                     var button = buttons[i];
-                    var li=$("<li>");
-                    var div=$("<div>");
+                    var li = $("<li>");
+                    var div = $("<div>");
                     div.text(button.name);
-                    var button2=button;
+                    var button2 = button;
                     var subButtons = button.sub_button;
                     delete button2.sub_button;
-                    div.data("data",button2);
-                    div.attr("p",true);
+                    div.data("data", button2);
+                    div.attr("p", true);
                     li.append(div);
 
 
                     var j = 0;
-                    var cul=$("<ul>");
-                    cul.css({display:"none"});
+                    var cul = $("<ul>");
+                    cul.css({display: "none"});
                     if (subButtons != null && subButtons.length > 0) {
                         for (; j < subButtons.length; j++) {
-                            var subButton=subButtons[j];
-                            var cli=$("<li>");
-                            var cdiv=$("<div>");
-                            cdiv.attr("p",false);
+                            var subButton = subButtons[j];
+                            var cli = $("<li>");
+                            var cdiv = $("<div>");
+                            cdiv.attr("p", false);
                             cdiv.text(subButton.name);
-                            var subButton2=subButton;
+                            var subButton2 = subButton;
                             delete subButton2.sub_button;
-                            cdiv.data("data",subButton2);
+                            cdiv.data("data", subButton2);
                             cli.append(cdiv)
                             cul.append(cli);
                         }
                     }
-                    if(j<5){
-                        var cli=$("<li>");
-                        var cdiv=$("<div>");
+                    if (j < 5) {
+                        var cli = $("<li>");
+                        var cdiv = $("<div>");
                         cdiv.text("+");
-                        cdiv.attr("p",false);
-                        cdiv.attr("n",true);
+                        cdiv.attr("p", false);
+                        cdiv.attr("n", true);
                         cli.append(cdiv);
                         //cli.data("data",subButton);
                         cul.append(cli);
@@ -330,35 +356,35 @@
 
                     li.append(cul);
                     ul.append(li);
-                   /* var button = buttons[i];
-                    var m = $("#m" + (i + 1));
-                    m.text(button.name);
-                    m.data("data",button);
-                    m.css({display:"block"})
-                    var subButtons = button.sub_button;
-                    var j = 0;
-                    if (subButtons != null && subButtons.length > 0) {
-                        for (; j < subButtons.length; j++) {
-                            var subButton=subButtons[j];
-                            var mj=$("#m" + (i + 1)+(j+1));
-                            mj.css({display:"block"})
-                            mj.text(subButton.name);
-                            mj.data("data",subButton);
-                        }
-                    }*/
+                    /* var button = buttons[i];
+                     var m = $("#m" + (i + 1));
+                     m.text(button.name);
+                     m.data("data",button);
+                     m.css({display:"block"})
+                     var subButtons = button.sub_button;
+                     var j = 0;
+                     if (subButtons != null && subButtons.length > 0) {
+                     for (; j < subButtons.length; j++) {
+                     var subButton=subButtons[j];
+                     var mj=$("#m" + (i + 1)+(j+1));
+                     mj.css({display:"block"})
+                     mj.text(subButton.name);
+                     mj.data("data",subButton);
+                     }
+                     }*/
                 }
             }
-            if(i<3){
-                var li=$("<li>");
-                var div=$("<div>");
+            if (i < 3) {
+                var li = $("<li>");
+                var div = $("<div>");
                 div.text("+");
-                div.attr("p",true);
-                div.attr("n",true);
+                div.attr("p", true);
+                div.attr("n", true);
                 li.append(div);
                 ul.append(li);
             }
 
-            ul.find(">li").eq(0).find(">div").click();
+            //ul.find(">li").eq(0).find(">div").click();
 
         });
     })
@@ -383,7 +409,6 @@
         mclick(div);
 
 
-
         /* menu-type-vive
          menu-type-content*/
 
@@ -396,64 +421,66 @@
 
 
     function mclick(tag) {
-        $("#phone-button-text-ul").find("div").css({background:"#FFFFFF"});
+        $("#menu-edit-tip").css({display: "none"});
+        $("#menu-edit-content").css({display: "block"});
+        $("#phone-button-text-ul").find("div").css({background: "#FFFFFF"});
         /*$("#phone-button-text-ul").find("div").each(function(){
-            $(this)
-        })*/
-        tag.css({background:"#D4F2F7"});
+         $(this)
+         })*/
+        tag.css({background: "#D4F2F7"});
         /*if(tag.attr("p")==true){
-            tag.parent().css({background:"#D4F2F7"});
-        }else {
+         tag.parent().css({background:"#D4F2F7"});
+         }else {
 
-        }*/
-        var data=tag.data("data");
+         }*/
+        var data = tag.data("data");
         console.log(data);
         if (data == null) {
             tag.text("菜单名称");
             data = {
                 "type": "view",
                 "name": "菜单名称",
-                "url": ""
+                "url": "http://"
             };
             tag.data("data", data);
-            tag.attr("n",true);
-            if(tag.attr("p")=="true"){
-                var cul=$("<ul>");
-                var cli=$("<li>");
-                var cdiv=$("<div>");
+            tag.attr("n", true);
+            if (tag.attr("p") == "true") {
+                var cul = $("<ul>");
+                var cli = $("<li>");
+                var cdiv = $("<div>");
                 cdiv.text("+");
-                cdiv.attr("p",false);
+                cdiv.attr("p", false);
                 //cli.data("data",subButton);
                 cli.append(cdiv);
                 cul.append(cli);
                 tag.parent().append(cul);
 
-                var pul=tag.parent().parent();
+                var pul = tag.parent().parent();
 
-                if(pul.find(">li").length<3){
-                    var li=$("<li>");
-                    var div=$("<div>");
+                if (pul.find(">li").length < 3) {
+                    var li = $("<li>");
+                    var div = $("<div>");
                     div.text("+");
-                    div.attr("p",true);
-                    div.attr("n",true);
+                    div.attr("p", true);
+                    div.attr("n", true);
                     li.append(div);
                     li.append(cul);
                     pul.append(li);
                 }
-            }else {
-                var pul=tag.parent().parent();
-                if(pul.find(">li").length==1){
-                    var div=pul.parent().find(">div");
-                    var data=div.data("data");
+            } else {
+                var pul = tag.parent().parent();
+                if (pul.find(">li").length == 1) {
+                    var div = pul.parent().find(">div");
+                    var data = div.data("data");
                     delete data.type;
-                    div.data("data",data);
+                    div.data("data", data);
                 }
-                if(pul.find(">li").length<5){
-                    var cli=$("<li>");
-                    var cdiv=$("<div>");
+                if (pul.find(">li").length < 5) {
+                    var cli = $("<li>");
+                    var cdiv = $("<div>");
                     cdiv.text("+");
-                    cdiv.attr("p",false);
-                    cdiv.attr("n",true);
+                    cdiv.attr("p", false);
+                    cdiv.attr("n", true);
                     cli.append(cdiv);
                     pul.append(cli);
                 }
@@ -465,19 +492,19 @@
             var odata = {};
             odata.name = $("#menu-name").val();
             odata.type = $("input[name='type']:checked").val();
-            if(menuEditData.attr("p")=="true"){
-                var pul=menuEditData.parent().find(">ul");
-                if(pul.find(">li").length>1){
+            if (menuEditData.attr("p") == "true") {
+                var pul = menuEditData.parent().find(">ul");
+                if (pul.find(">li").length > 1) {
                     delete odata.type;
                 }
             }
 
-
-            switch (odata.type) {
-                case "view":
-                    /*odata.url=*/
-                    "";
-                    break;
+            if (odata.type == "view") {
+                odata.url = $("#url").val();
+                delete odata.key;
+            } else {
+                odata.key = $("#key").val();
+                delete odata.url;
             }
             menuEditData.data("data", odata);
 
@@ -485,50 +512,124 @@
 
         $("#menu-edit").data("data", tag);
 
-        data=tag.data("data");
+        data = tag.data("data");
         $("#menu-name").val(data.name);
-        $("input[name='type']").prop("checked",false);
-        if(data.type!=null){
-            $("#" + data.type).prop("checked",true);
-            $("#menu-type-vive").css({display:"block"})
-        }else {
-            $("#menu-type-vive").css({display:"none"})
+        $("input[name='type']").prop("checked", false);
+        $("#view-content").css({display: "none"});
+        $("#key-content").css({display: "none"});
+        if (data.type != null) {
+            $("#" + data.type).prop("checked", true);
+            $("#menu-type-vive").css({display: "block"})
+
+            /*
+             <div id="view-content">
+             <input type="text" id="url">
+             </div>
+             <div id="key-content">
+             <input type="text" id="key">
+             </div>*/
+            if (data.type == "view") {
+                $("#view-content").css({display: "block"});
+                $("#url").val(data.url);
+                $("#key").val("");
+            } else {
+                $("#key-content").css({display: "block"});
+                $("#key").val(data.key);
+                $("#url").val("");
+            }
+
+
+        } else {
+            $("#menu-type-vive").css({display: "none"})
         }
     }
     $("#menu-edit-del-a").click(function () {
-        var tag=$("#menu-edit").data("data");
+        var tag = $("#menu-edit").data("data");
 
-        var ptag=tag.parent().parent();
+        var ptag = tag.parent().parent();
         tag.parent().remove();
-        if(tag.attr("p")=="true"){
+        if (tag.attr("p") == "true") {
 
-            if(ptag.find(">li").length+1==3){
-                var li=$("<li>");
-                var div=$("<div>");
+            if (ptag.find(">li").length + 1 == 3) {
+                var li = $("<li>");
+                var div = $("<div>");
                 div.text("+");
-                div.attr("p",true);
-                div.attr("n",true);
+                div.attr("p", true);
+                div.attr("n", true);
                 li.append(div);
                 ptag.append(li);
             }
-        }else{
+        } else {
 
-            if(ptag.find(">li").length+1==5){
-                var cli=$("<li>");
+            if (ptag.find(">li").length + 1 == 5) {
+                var cli = $("<li>");
                 cli.text("+");
-                cli.attr("p",false);
-                cli.attr("n",true);
+                cli.attr("p", false);
+                cli.attr("n", true);
                 //cli.data("data",subButton);
                 tag.append(cli);
             }
-            if(ptag.find(">li").length==1){
-                var div=ptag.parent().find(">div");
-                var data=div.data("data");
-                data.type="view";
-                div.data("data",data);
+            if (ptag.find(">li").length == 1) {
+                var div = ptag.parent().find(">div");
+                var data = div.data("data");
+                data.type = "view";
+                div.data("data", data);
             }
         }
-        $("#phone-button-text-ul").find(">li").eq(0).find(">div").click();
+        $("#menu-edit-tip").css({display: "block"});
+        $("#menu-edit-content").css({display: "none"});
+        // $("#phone-button-text-ul").find(">li").eq(0).find(">div").click();
+    });
+
+    $("#menu-save").click(function () {
+        //$("#phone-button-text-ul").find(">li").eq(0).find(">div").click();
+        $("#phone-button-text-ul").find("div").css({background: "#FFFFFF"});
+        $("#phone-button-text-ul").find(">li>ul").css({display: "none"});
+
+        $("#menu-edit-tip").css({display: "block"});
+        $("#menu-edit-content").css({display: "none"});
+        var meun = {button: []};
+        var lis = $("#phone-button-text-ul").find(">li");
+        for (var i = 0; i < lis.length; i++) {
+            var li = lis.eq(i);
+            var div = li.find(">div");
+            var data = div.data("data");
+            if (data != null) {
+
+                var cdivs = li.find(">ul>li>div");
+                if (cdivs != null && cdivs.length > 0) {
+                    data.sub_button = [];
+                    for (var j = 0; j < cdivs.length; j++) {
+                        var cdiv = cdivs.eq(j);
+                        var cdata = cdiv.data("data");
+                        if (cdata != null) {
+                            data.sub_button[j] = cdata;
+                        }
+                    }
+                }
+                meun.button[i] = data;
+            }
+        }
+        console.log(meun);
+        console.log(JSON.stringify(meun));
+        var jdata = {
+            url: "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + window.localStorage.accessToken,
+            type: "post",
+            data: JSON.stringify(meun)
+        }
+        myAjax(jdata, function (data) {
+            alert("保存成功")
+        })
+    });
+
+    $("input[name='type']").click(function () {
+        $("#view-content").css({display: "none"});
+        $("#key-content").css({display: "none"});
+        if ($(this).val() == "view") {
+            $("#view-content").css({display: "block"});
+        } else {
+            $("#key-content").css({display: "block"});
+        }
     })
 </script>
 </html>
