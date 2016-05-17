@@ -240,11 +240,11 @@
                     <li><input type="radio" id="location_select" name="type" value="location_select"> <label
                             for="location_select">地理位置</label>
                     </li>
-                    <li><input type="radio" id="media_id" name="type" value="media_id"> <label
+                   <!-- <li><input type="radio" id="media_id" name="type" value="media_id"> <label
                             for="media_id">图文消息</label>
                     </li>
                     <li><input type="radio" id="view_limited" name="type" value="view_limited"> <label
-                            for="view_limited">跳转图文</label></li>
+                            for="view_limited">跳转图文</label></li>-->
                 </ul>
             </div>
             <div id="menu-type-content" style="padding-top: 20px">
@@ -252,7 +252,8 @@
                     跳转地址：<br/><input type="text" id="url">
                 </div>
                 <div id="key-content" style="display: none">
-                    事件key:<br/><input type="text" id="key">
+                    事件key：<br/><input type="text" id="key">
+                   <!-- media_id：<br/>-->
                 </div>
             </div>
         </div>
@@ -615,8 +616,14 @@
                 meun.button[i] = data;
             }
         }
+       /* meun.button[2]={
+            "type": "text",
+            "name": "text",
+            "value": "This is text!"
+        }*/
         console.log(meun);
         console.log(JSON.stringify(meun));
+
         var jdata = {
             url: "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + window.localStorage.accessToken,
             type: "post",
