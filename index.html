@@ -639,6 +639,9 @@
         $("#key-content").css({display: "none"});
         if ($(this).val() == "view") {
             $("#view-content").css({display: "block"});
+            if($("#url").val().length==0){
+                $("#url").val("http://");
+            }
         } else {
             $("#key-content").css({display: "block"});
         }
