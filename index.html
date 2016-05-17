@@ -146,8 +146,10 @@
 </head>
 <body>
 <div>
-    <div>appID：<input type="text" id="appId" value="wx674e6fc604b987e6"></div>
-    <div>appsecret：<input type="text" id="appsecret" value="e2b4eec5075464a31602ac035d686076"></div>
+   <!-- wx674e6fc604b987e6
+    e2b4eec5075464a31602ac035d686076-->
+    <div>appID：<input type="text" id="appId" value=""></div>
+    <div>appsecret：<input type="text" id="appsecret" value=""></div>
     <div><a href="javascript:void(0)" id="getAccessToken">获取accessToken</a></div>
 </div>
 <div>
@@ -289,8 +291,10 @@
     }
 
     $("#getAccessToken").click(function () {
+        window.localStorage.appId=$("#appId").val();
+        window.localStorage.appsecret=$("#appsecret").val();
         var data = {
-            url: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + $("#appId").val() + "&secret=" + $("#appsecret").val(),
+            url: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" +  window.localStorage.appId + "&secret=" + window.localStorage.appsecret,
             type: "get",
         }
         myAjax(data, function (data) {
@@ -392,6 +396,8 @@
 
     //初始化
     $("#accessToken").val(window.localStorage.accessToken);
+    $("#appId").val(window.localStorage.appId);
+    $("#appsecret").val(window.localStorage.appsecret);
     if ($("#accessToken").val().length > 0) {
         $("#querymeun").click();
     }
